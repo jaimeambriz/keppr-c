@@ -14,7 +14,6 @@
                         <p>{{keep.name}}</p>
                         <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
                         <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-                        <i class="fa fa-heart">{{keep.likes}}</i>
                         <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
                     </div>
                 </div>
@@ -26,7 +25,6 @@
                         <p>{{keep.name}}</p>
                         <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
                         <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-                        <i class="fa fa-heart">{{keep.likes}}</i>
                         <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
                     </div>
                 </div>
@@ -38,7 +36,6 @@
                         <p>{{keep.name}}</p>
                         <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
                         <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-                        <i class="fa fa-heart">{{keep.likes}}</i>
                         <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
                     </div>
                 </div>
@@ -50,7 +47,6 @@
                         <p>{{keep.name}}</p>
                         <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
                         <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-                        <i class="fa fa-heart">{{keep.likes}}</i>
                         <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
                     </div>
                 </div>
@@ -168,11 +164,11 @@
         },
         computed: {
             keeps() {
-                var keeps = this.$store.state.userKeeps
-                if (keeps.length == 4) {
-                    return keeps
-                }
-                this.$store.dispatch('massageKeepData', { data: keeps, num: 4, set: "setUserKeeps" })
+                // var keeps = this.$store.state.userKeeps
+                // if (keeps.length == 4) {
+                //     return keeps
+                // }
+                // this.$store.dispatch('massageKeepData', { data: keeps, num: 4, set: "setUserKeeps" })
                 return this.$store.state.userKeeps
             },
             vaults() {
@@ -234,9 +230,22 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .create-keep{
+    /*********** THUMBNAIL OPACITY ********* */
+
+    .caption {
         color: white;
     }
+
+    .thumbnail {
+        background-color: rgba(253, 253, 253, 0.215)
+    }
+
+    /* ********* END ********* */
+
+    .create-keep {
+        color: white;
+    }
+
     .keeps {
         padding-top: 2rem;
     }

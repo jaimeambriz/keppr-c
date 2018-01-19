@@ -7,9 +7,60 @@
         </div>
         <div class="row">
             <!-- DRAW THE VAULTS -->
-            <div class="col-sm-6" v-for="vault in vaults">
+            <div class="column">
+                <div class="thumbnail" v-for="vault in vaults[0]">
+                    <router-link :to="'/vaults/'+vault.id">
+                        <img :src="vault.imageUrl" alt="image" style="width:100%">
+                    </router-link>
+                    <div class="caption">
+                        <p>{{vault.name}}</p>
+                        <!-- <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                        <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i> -->
+                        <i class="fa fa-trash" @click="deleteVault(vault.id)"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="thumbnail" v-for="vault in vaults[1]">
+                    <router-link :to="'/vaults/'+vault.id">
+                        <img :src="vault.imageUrl" alt="image" style="width:100%">
+                    </router-link>
+                    <div class="caption">
+                        <p>{{vault.name}}</p>
+                        <!-- <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                            <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i> -->
+                        <i class="fa fa-trash" @click="deleteVault(vault.id)"></i>
+                    </div>
+                </div>
+            </div>
+            <div v-if="vaults.length > 2" class="column">
+                <div class="thumbnail" v-for="vault in vaults[2]">
+                    <router-link :to="'/vaults/'+vault.id">
+                        <img :src="vault.imageUrl" alt="image" style="width:100%">
+                    </router-link>
+                    <div class="caption">
+                        <p>{{vault.name}}</p>
+                        <!-- <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                                <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i> -->
+                        <i class="fa fa-trash" @click="deleteVault(vault.id)"></i>
+                    </div>
+                </div>
+            </div>
+            <div v-if="vaults.length > 2" class="column">
+                <div class="thumbnail" v-for="vault in vaults[3]">
+                    <router-link :to="'/vaults/'+vault.id">
+                        <img :src="vault.imageUrl" alt="image" style="width:100%">
+                    </router-link>
+                    <div class="caption">
+                        <p>{{vault.name}}</p>
+                        <!-- <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                                    <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i> -->
+                        <i class="fa fa-trash" @click="deleteVault(vault.id)"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-sm-6" v-for="vault in vaults">
                 <div class="thumbnail">
-                    <!-- <a href="#/" target=""> -->
                     <router-link :to="'/vaults/'+vault.id">
                         <img :src="vault.imageUrl" alt="image" style="width:100%">
                     </router-link>
@@ -18,9 +69,8 @@
                         <p>{{vault.description}}</p>
                         <i class="fa fa-trash" @click="deleteVault(vault.id)"></i>
                     </div>
-                    <!-- </a> -->
                 </div>
-            </div>
+            </div> -->
             <!-- CREATE VAULT BUTTON -->
 
             <!-- MODAL BEGIN -->
@@ -81,8 +131,14 @@
         components: {},
         computed: {
             vaults() {
-                return this.$store.state.vaults
-            }
+                //     var vaults = this.$store.state.vaults
+                //     if (vaults.length == 2) {
+                //         return vaults
+                //     }
+                //     this.$store.dispatch('massageKeepData', { data: vaults, num: 2, set: "setVaults" })
+                return this.$store.state.activeVaults
+            },
+
         },
         mounted() {
             this.$store.dispatch('getVaults')
@@ -96,7 +152,7 @@
                     imageUrl: ""
                 }
             },
-            deleteVault(vaultId){
+            deleteVault(vaultId) {
                 this.$store.dispatch('deleteVault', vaultId)
             }
         }
@@ -105,9 +161,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .create-vault{
+    .create-vault {
         color: white;
     }
+
     h1,
     h2 {
         font-weight: normal;
@@ -133,5 +190,73 @@
 
     .vaults {
         padding-top: 2rem;
+    }
+
+    /* *********** COLUMN STYLING ********* */
+
+    body {
+        margin: 0;
+        font-family: Arial;
+    }
+
+    img:hover {
+        -ms-transform: scale(1.02);
+        /* IE 9 */
+        -webkit-transform: scale(1.02);
+        /* Safari 3-8 */
+        transform: scale(1.02);
+    }
+
+    .header {
+        text-align: center;
+        padding: 32px;
+    }
+
+    img {
+        border-radius: 10px;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        /* IE 10 */
+        display: flex;
+        -ms-flex-wrap: wrap;
+        /* IE 10 */
+        flex-wrap: wrap;
+        padding: 0 4px;
+    }
+
+    /* Create two equal columns that sits next to each other */
+
+    .column {
+        -ms-flex: 25%;
+        /* IE 10 */
+        flex: 25%;
+        padding: 0 4px;
+    }
+
+    .column img {
+        margin-top: 8px;
+        vertical-align: middle;
+    }
+
+    /* Style the buttons */
+
+    .btn {
+        border: none;
+        outline: none;
+        padding: 10px 16px;
+        background-color: #f1f1f1;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .btn:hover {
+        background-color: #ddd;
+    }
+
+    .btn.active {
+        background-color: #666;
+        color: white;
     }
 </style>

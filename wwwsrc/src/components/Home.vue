@@ -8,13 +8,59 @@
       <button class="btn" @click="four()">4</button>
       <button class="btn" @click="eight()">8</button> -->
     <!-- </div> -->
-    <!-- ********** BEGIN DRAWING THUMBNAILS ********* -->
-    <div id="photos">
+    <div class="row">
+
+      <!-- ********** BEGIN DRAWING THUMBNAILS ********* -->
+      <div class="column">
+        <div class="thumbnail keep-content" v-for="keep in keeps[0]">
+          <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
+          <div class="caption">
+            <p>{{keep.name}}</p>
+            <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+            <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+            <i class="fa fa-share"></i> (coming soon)
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="thumbnail keep-content" v-for="keep in keeps[1]">
+          <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
+          <div class="caption">
+            <p>{{keep.name}}</p>
+            <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+            <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+            <i class="fa fa-share"></i> (coming soon)
+          </div>
+        </div>
+      </div>
+      <div v-if="keeps.length > 2" class="column">
+        <div class="thumbnail keep-content" v-for="keep in keeps[2]">
+          <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
+          <div class="caption">
+            <p>{{keep.name}}</p>
+            <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+            <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+            <i class="fa fa-share"></i> (coming soon)
+          </div>
+        </div>
+      </div>
+      <div v-if="keeps.length > 2" class="column">
+        <div class="thumbnail keep-content" v-for="keep in keeps[3]">
+          <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
+          <div class="caption">
+            <p>{{keep.name}}</p>
+            <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+            <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+            <i class="fa fa-share"></i> (coming soon)
+          </div>
+        </div>
+      </div>
+      <!-- <div id="photos"> -->
       <!-- <div class="column"> -->
       <!-- <div class="thumbnail" style="width:100%;" v-for="keep in keeps"></div> -->
-      <div class="image-container " v-for="keep in keeps">
-        <img :src="keep.imageUrl" alt="image" @click="setActiveKeep(keep)" style="width:100%; border:white solid 10px; border-radius: 10%;">
-      </div>
+      <!-- <div class="image-container " v-for="keep in keeps">
+          <img :src="keep.imageUrl" alt="image" @click="setActiveKeep(keep)" style="width:100%; border:white solid 10px; border-radius: 10%;">
+        </div> -->
 
 
       <!-- <div class="caption"> -->
@@ -26,72 +72,72 @@
       <!-- </div> -->
       <!-- </div> -->
       <!-- <div class="column">
-        <div class="thumbnail" v-for="keep in keeps[1]">
-          <img :src="keep.imageUrl" alt="image" style="width:100%">
-          <div class="caption">
-            <p>{{keep.name}}</p>
-            <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-            <i class="fa fa-code-fork">{{keep.count}}</i>
-            <i class="fa fa-heart">{{keep.likes}}</i>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <div class="thumbnail" v-for="keep in keeps[2]">
-          <img :src="keep.imageUrl" alt="image" style="width:100%">
-          <div class="caption">
-            <p>{{keep.name}}</p>
-            <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-            <i class="fa fa-code-fork">{{keep.count}}</i>
-            <i class="fa fa-heart">{{keep.likes}}</i>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <div class="thumbnail" v-for="keep in keeps[3]">
-          <img :src="keep.imageUrl" alt="image" style="width:100%">
-          <div class="caption">
-            <p>{{keep.name}}</p>
-            <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-            <i class="fa fa-code-fork">{{keep.count}}</i>
-            <i class="fa fa-heart">{{keep.likes}}</i>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <div class="thumbnail" v-for="keep in keeps[4]">
-          <img :src="keep.imageUrl" alt="image" style="width:100%">
-          <div class="caption">
-            <p>{{keep.name}}</p>
-            <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-            <i class="fa fa-code-fork">{{keep.count}}</i>
-            <i class="fa fa-heart">{{keep.likes}}</i>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-        <div class="thumbnail" v-for="keep in keeps[5]">
-          <img :src="keep.imageUrl" alt="image" style="width:100%">
-          <div class="caption">
-            <p>{{keep.name}}</p>
-            <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-            <i class="fa fa-code-fork">{{keep.count}}</i>
-            <i class="fa fa-heart">{{keep.likes}}</i>
-          </div>
-        </div>
-      </div>
-      <div class="column">
-          <div class="thumbnail" v-for="keep in keeps[6]">
-            <img :src="keep.imageUrl" alt="image" style="width:100%">
-            <div class="caption">
-              <p>{{keep.name}}</p>
-              <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-              <i class="fa fa-code-fork">{{keep.count}}</i>
-              <i class="fa fa-heart">{{keep.likes}}</i>
+            <div class="thumbnail" v-for="keep in keeps[1]">
+              <img :src="keep.imageUrl" alt="image" style="width:100%">
+              <div class="caption">
+                <p>{{keep.name}}</p>
+                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
+                <i class="fa fa-code-fork">{{keep.count}}</i>
+                <i class="fa fa-heart">{{keep.likes}}</i>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="column">
+          <div class="column">
+            <div class="thumbnail" v-for="keep in keeps[2]">
+              <img :src="keep.imageUrl" alt="image" style="width:100%">
+              <div class="caption">
+                <p>{{keep.name}}</p>
+                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
+                <i class="fa fa-code-fork">{{keep.count}}</i>
+                <i class="fa fa-heart">{{keep.likes}}</i>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="thumbnail" v-for="keep in keeps[3]">
+              <img :src="keep.imageUrl" alt="image" style="width:100%">
+              <div class="caption">
+                <p>{{keep.name}}</p>
+                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
+                <i class="fa fa-code-fork">{{keep.count}}</i>
+                <i class="fa fa-heart">{{keep.likes}}</i>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="thumbnail" v-for="keep in keeps[4]">
+              <img :src="keep.imageUrl" alt="image" style="width:100%">
+              <div class="caption">
+                <p>{{keep.name}}</p>
+                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
+                <i class="fa fa-code-fork">{{keep.count}}</i>
+                <i class="fa fa-heart">{{keep.likes}}</i>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="thumbnail" v-for="keep in keeps[5]">
+              <img :src="keep.imageUrl" alt="image" style="width:100%">
+              <div class="caption">
+                <p>{{keep.name}}</p>
+                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
+                <i class="fa fa-code-fork">{{keep.count}}</i>
+                <i class="fa fa-heart">{{keep.likes}}</i>
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="thumbnail" v-for="keep in keeps[6]">
+              <img :src="keep.imageUrl" alt="image" style="width:100%">
+              <div class="caption">
+                <p>{{keep.name}}</p>
+                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
+                <i class="fa fa-code-fork">{{keep.count}}</i>
+                <i class="fa fa-heart">{{keep.likes}}</i>
+              </div>
+            </div>
+          </div>
+          <div class="column">
             <div class="thumbnail" v-for="keep in keeps[7]">
               <img :src="keep.imageUrl" alt="image" style="width:100%">
               <div class="caption">
@@ -104,16 +150,16 @@
           </div> -->
       <!-- ********** DRAW KEEPS ********** -->
       <!-- <div class="col-sm-4" v-for="keep in keeps">
-        <div class="thumbnail">
-          <img :src="keep.imageUrl" alt="image" style="width:100%">
-          <div class="caption">
-            <p>{{keep.name}}</p>
-            <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-            <i class="fa fa-code-fork">{{keep.count}}</i>
-            <i class="fa fa-heart">{{keep.likes}}</i>
-          </div>
-        </div>
-      </div> -->
+            <div class="thumbnail">
+              <img :src="keep.imageUrl" alt="image" style="width:100%">
+              <div class="caption">
+                <p>{{keep.name}}</p>
+                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
+                <i class="fa fa-code-fork">{{keep.count}}</i>
+                <i class="fa fa-heart">{{keep.likes}}</i>
+              </div>
+            </div>
+          </div> -->
     </div>
     <login></login>
     <register></register>
@@ -123,15 +169,15 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <!-- *********** Modal Header *********** -->
-            <button type="button" class="close" data-dismiss="modal">
-              <span aria-hidden="true">&times;</span>
-              <span class="sr-only">Close</span>
-            </button>
-            <h4 class="modal-title">
-              Add Keep
-            </h4>
-            <h6>{{activeKeep.name}}</h6>
-            <img :src="activeKeep.imageUrl" alt="" style="height:100px; width:auto;">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">
+            Add Keep
+          </h4>
+          <h6>{{activeKeep.name}}</h6>
+          <img :src="activeKeep.imageUrl" alt="" style="height:100px; width:auto;">
           <!-- *********** Modal Body *********** -->
           <div class="modal-body">
             <form class="form">
@@ -180,18 +226,24 @@
     computed: {
       keeps() {
         var keeps = this.$store.state.keeps
-        console.log(keeps)
-        return keeps
+        if (keeps.length == 4) {
+          return keeps
+        }
+        this.$store.dispatch('massageKeepData', { data: keeps, num: 4, set: "setKeeps" })
+        return this.$store.state.keeps
       },
       vaults() {
         return this.$store.state.vaults
       },
       activeKeep() {
         return this.$store.state.activeKeep
+      },
+      user() {
+        return this.$store.state.user
       }
     },
     methods: {
-      setActiveKeep(keep) {
+      openImageModal(keep) {
         this.$store.dispatch('setActiveKeep', keep)
         $("#imageModal").modal('show')
         this.incrementViews(keep)
@@ -208,6 +260,10 @@
         }
         this.incrementCount()
         this.$store.dispatch("addKeepToVault", addKeep)
+      },
+      setActiveKeep(keep) {
+        this.$store.dispatch('setActiveKeep', keep)
+        $("#addKeep").modal('show')
       },
       incrementCount() {
         var keep = this.$store.state.activeKeep
@@ -242,6 +298,12 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  .caption{
+    color: white;
+  }
+  .thumbnail{
+    background-color: rgba(87, 87, 87, 0.5)
+  }
   .home {
     padding-top: 4rem;
   }
@@ -280,31 +342,56 @@
   p {
     margin: 0 0 1px
   }
+
   img:hover {
-    -ms-transform: scale(1.02); /* IE 9 */
-    -webkit-transform: scale(1.02); /* Safari 3-8 */
-    transform: scale(1.02); 
-}
+    -ms-transform: scale(1.02);
+    /* IE 9 */
+    -webkit-transform: scale(1.02);
+    /* Safari 3-8 */
+    transform: scale(1.02);
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial;
+  }
+
+  .header {
+    text-align: center;
+    padding: 32px;
+  }
+
+  img {
+    border-radius: 10px;
+  }
+
+  .row {
+    display: -ms-flexbox;
+    /* IE 10 */
+    display: flex;
+    -ms-flex-wrap: wrap;
+    /* IE 10 */
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+
   /* Create two equal columns that sits next to each other */
 
-  /* 
   .column {
-    -ms-flex: 50%; */
-
-  /* IE 10 */
-
-  /* flex: 50%;
+    -ms-flex: 25%;
+    /* IE 10 */
+    flex: 25%;
     padding: 0 4px;
   }
 
   .column img {
     margin-top: 8px;
     vertical-align: middle;
-  } */
+  }
 
   /* Style the buttons */
 
-  /* .btn {
+  .btn {
     border: none;
     outline: none;
     padding: 10px 16px;
@@ -320,11 +407,37 @@
   .btn.active {
     background-color: #666;
     color: white;
-  } */
+  }
+
+  .keep-content:hover .overlay {
+    opacity: .7;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #070000;
+  }
+
+  .hover-buttons {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    font-size: 30px;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
 
   /* ************** Column Count *********** */
 
-  .thumbnail {
+  /* .thumbnail {
     display: block;
     padding: 0px;
     margin-bottom: 20px;
@@ -339,15 +452,16 @@
 
   #photos {
 
-    line-height: 18;
+    line-height: 18; */
 
-    /* -webkit-column-count: 5;
+  /* -webkit-column-count: 5;
    -webkit-column-gap:   0px;
    -moz-column-count:    5;
    -moz-column-gap:      0px; */
-    column-count: 4;
+
+  /* column-count: 4;
     column-gap: 2px;
-  }
+  } */
 
   /* 
   template {
@@ -363,7 +477,7 @@
   }
 } */
 
-  @media (max-width: 1000px) {
+  /* @media (max-width: 1000px) {
     #photos {
       -moz-column-count: 3;
       -webkit-column-count: 3;
@@ -377,7 +491,7 @@
       -webkit-column-count: 2;
       column-count: 2;
     }
-  }
+  } */
 
   /* /* @media (max-width: 400px) {
     #photos {

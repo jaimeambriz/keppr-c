@@ -579,7 +579,7 @@ var store = new vuex.Store({
             }
 
         ],
-        activeVault: {},
+        activeVaults: [],
         activeKeeps: [
             {
                 id: 2,
@@ -660,6 +660,9 @@ var store = new vuex.Store({
         },
         setActiveVaultKeeps(state, payload) {
             state.activeKeeps = payload
+        },
+        setActiveVaults(state, payload) {
+            state.activeVaults = payload
         }
     },
     actions: {
@@ -722,6 +725,7 @@ var store = new vuex.Store({
             api('vaults/user/' + userId)
                 .then(res => {
                     commit('setVaults', res.data)
+                    dispatch('massageKeepData', { data: res.data, num: 2, set: "setActiveVaults" })
                     console.log('Get Usesr Vaults: ', res)
                 })
                 .catch(err => {
@@ -761,7 +765,7 @@ var store = new vuex.Store({
         getAllKeeps({ commit, dispatch }) {
             api('keeps')
                 .then(res => {
-                    commit('setKeeps', res.data)
+                    dispatch('massageKeepData', { data: res.data, num: 4, set: "setKeeps" })
                     console.log('Get Keeps: ', res)
                 })
                 .catch(err => {
@@ -787,16 +791,16 @@ var store = new vuex.Store({
                 }
             }
             if (payload.num == 2) {
-                    commit(`${payload.set}`, outArray2)
+                commit(`${payload.set}`, outArray2)
             } else {
-                    commit(`${payload.set}`, outArray4)
-                }
+                commit(`${payload.set}`, outArray4)
+            }
         },
         getUserKeeps({ commit, dispatch }) {
             var userId = this.state.user.id;
             api('keeps/user/' + userId)
                 .then(res => {
-                    commit('setUserKeeps', res.data)
+                    dispatch('massageKeepData', { data: res.data, num: 4, set: "setUserKeeps" })
                     console.log('Get User Keeps: ', res)
                 })
                 .catch(err => {
@@ -807,7 +811,7 @@ var store = new vuex.Store({
             api('keeps/vaults/' + payload)
                 .then(res => {
                     console.log('Get Keeps By ValutId: ', res)
-                    commit('setActiveVaultKeeps', res.data)
+                    dispatch('massageKeepData', { data: res.data, num: 4, set: "setActiveVaultKeeps" })
                 })
                 .catch(err => {
                     console.log('Error: ', err)
