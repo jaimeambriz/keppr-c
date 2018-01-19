@@ -1,0 +1,10 @@
+/Users/JaimeAmbriz/source/codeworks/keeper/bin/Debug/netcoreapp2.0/keeper.deps.json
+/Users/JaimeAmbriz/source/codeworks/keeper/bin/Debug/netcoreapp2.0/keeper.runtimeconfig.json
+/Users/JaimeAmbriz/source/codeworks/keeper/bin/Debug/netcoreapp2.0/keeper.runtimeconfig.dev.json
+/Users/JaimeAmbriz/source/codeworks/keeper/bin/Debug/netcoreapp2.0/keeper.dll
+/Users/JaimeAmbriz/source/codeworks/keeper/bin/Debug/netcoreapp2.0/keeper.pdb
+/Users/JaimeAmbriz/source/codeworks/keeper/obj/Debug/netcoreapp2.0/keeper.csproj.CoreCompileInputs.cache
+/Users/JaimeAmbriz/source/codeworks/keeper/obj/Debug/netcoreapp2.0/keeper.AssemblyInfoInputs.cache
+/Users/JaimeAmbriz/source/codeworks/keeper/obj/Debug/netcoreapp2.0/keeper.AssemblyInfo.cs
+/Users/JaimeAmbriz/source/codeworks/keeper/obj/Debug/netcoreapp2.0/keeper.dll
+/Users/JaimeAmbriz/source/codeworks/keeper/obj/Debug/netcoreapp2.0/keeper.pdb
