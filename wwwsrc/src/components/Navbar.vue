@@ -23,6 +23,12 @@
                             <i class="fa fa-thumb-tack fa-lg"></i> Keeps
                         </router-link>
                     </li>
+                    <li class="navbar-toggle">
+                            <label class="switch">
+                              <input type="checkbox">
+                              <span class="slider round"></span>
+                            </label>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li v-if="!user.id" class="navbar-email" data-toggle="modal" data-target="#register">
@@ -69,7 +75,7 @@
     /*navbar*/
 
     .container-fluid {
-        background-color: rgba(206, 39, 39, 0.7)
+        background-color: rgba(119, 119, 119, 0.7)
     }
 
     .navbar {
@@ -113,4 +119,73 @@
         padding-bottom: 10px;
         line-height: 60px;
     }
+
+    /* ********** TOGGLE SWITCH ********* */
+
+    /*makes the size of the slider*/
+
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+
+    /* this makes the checkbox a slider*/
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    /*actual slider itself*/
+
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+    /* set background color when active */
+
+    input:checked+.slider {
+        background-color: #2196F3;
+    }
+
+    /* change backround color*/
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders border*/
+
+    .slider.round {
+        border-radius: 34px;
+    }
+
+    /* Rounded sliders inside circle*/
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+    /* SLIDER BOARDER */
+    .navbar-inverse .navbar-toggle {
+    border-color: #3330;
+}
 </style>

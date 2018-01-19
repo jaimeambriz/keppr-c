@@ -20,14 +20,15 @@
     },
     mounted() {
       this.$store.dispatch('authenticate')
-      
+
     }
   }
 </script>
 
-<style >
+<style>
   #app {
-    background: rgb(206, 39, 39);
+    background: url("https://hdwallsource.com/img/2014/12/silver-wallpaper-21839-22382-hd-wallpapers.jpg") no-repeat fixed center;
+    /* background: rgb(206, 39, 39); */
     min-height: 100vh;
     font-family: 'Avenir', Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;

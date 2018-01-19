@@ -117,7 +117,7 @@
     </div>
     <login></login>
     <register></register>
-    <modal></modal>
+    <image-modal></image-modal>
     <!-- *********** ADD KEEP TO VAULT MODAL************ -->
     <div class="modal fade" id="addKeep" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog">
@@ -156,7 +156,7 @@
 </template>
 
 <script>
-  import Modal from './modal'
+  import ImageModal from './imagemodal'
   import Register from './Register'
   import Login from './Login'
   export default {
@@ -175,7 +175,7 @@
     components: {
       Login,
       Register,
-      Modal
+      ImageModal
     },
     computed: {
       keeps() {

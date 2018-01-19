@@ -1,7 +1,7 @@
 <template>
     <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog">
-            <div class="modal-content keep-content ">
+            <div class="modal-content">
                 <!-- *********** Modal Header *********** -->
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">
@@ -14,25 +14,25 @@
                 </div>
                 <!-- *********** Modal Body *********** -->
                 <div class="modal-body">
-                        <div class="thumbnail">
-                            <img :src="activeKeep.imageUrl" alt="image" class="image" style="height:500px; width:auto">
-                            <div class="caption">
-                                <i class="fa fa-eye"> {{activeKeep.views}}</i>
-                                <span v-if="user.id">
-                                    <i class="fa fa-code-fork" @click="OpenAddKeepToVaultModal"> {{activeKeep.count}}</i>
-                                </span>
+                    <div class="thumbnail keep-content">
+                        <img :src="activeKeep.imageUrl" alt="image" class="image" style="height:500px; width:auto">
+                        <div class="caption">
+                            <i class="fa fa-eye"> {{activeKeep.views}}</i>
+                            <span v-if="user.id">
+                                <i class="fa fa-code-fork" @click="OpenAddKeepToVaultModal"> {{activeKeep.count}}</i>
+                            </span>
 
-                                <i class="fa fa-share"></i> (coming soon)
-                            </div>
-                            <div class="hover-buttons overlay">
-                                    <i class="fa fa-eye"> {{activeKeep.views}}</i>
-                                    <span v-if="user.id">
-                                        <i class="fa fa-code-fork" @click="OpenAddKeepToVaultModal"> {{activeKeep.count}}</i>
-                                    </span>
-    
-                                    <i class="fa fa-share"></i> (coming soon)
-                            </div>
+                            <i class="fa fa-share"></i> (coming soon)
                         </div>
+                        <div class="hover-buttons overlay">
+                            <i class="fa fa-eye"> {{activeKeep.views}}</i>
+                            <span v-if="user.id">
+                                <i class="fa fa-code-fork" @click="OpenAddKeepToVaultModal"> {{activeKeep.count}}</i>
+                            </span>
+
+                            <i class="fa fa-share"></i> (coming soon)
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -83,6 +83,7 @@
         margin-left: 20px;
         margin-right: 20px;
     }
+
     .keep-content:hover .overlay {
         opacity: .7;
     }

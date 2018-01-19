@@ -7,7 +7,55 @@
         </div>
         <div class="row">
             <!-- ********** DRAW KEEPS ********** -->
-            <div class="col-sm-4" v-for="keep in keeps">
+            <div class="column">
+                <div class="thumbnail" v-for="keep in keeps[0]">
+                    <img :src="keep.imageUrl" alt="image" style="width:100%">
+                    <div class="caption">
+                        <p>{{keep.name}}</p>
+                        <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                        <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+                        <i class="fa fa-heart">{{keep.likes}}</i>
+                        <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="column">
+                <div class="thumbnail" v-for="keep in keeps[1]">
+                    <img :src="keep.imageUrl" alt="image" style="width:100%">
+                    <div class="caption">
+                        <p>{{keep.name}}</p>
+                        <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                        <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+                        <i class="fa fa-heart">{{keep.likes}}</i>
+                        <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
+                    </div>
+                </div>
+            </div>
+            <div v-if="keeps.length > 2" class="column">
+                <div class="thumbnail" v-for="keep in keeps[2]">
+                    <img :src="keep.imageUrl" alt="image" style="width:100%">
+                    <div class="caption">
+                        <p>{{keep.name}}</p>
+                        <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                        <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+                        <i class="fa fa-heart">{{keep.likes}}</i>
+                        <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
+                    </div>
+                </div>
+            </div>
+            <div v-if="keeps.length > 2" class="column">
+                <div class="thumbnail" v-for="keep in keeps[3]">
+                    <img :src="keep.imageUrl" alt="image" style="width:100%">
+                    <div class="caption">
+                        <p>{{keep.name}}</p>
+                        <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                        <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+                        <i class="fa fa-heart">{{keep.likes}}</i>
+                        <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-sm-4" v-for="keep in keeps">
                 <div class="thumbnail">
                     <img :src="keep.imageUrl" alt="image" style="width:100%">
                     <div class="caption">
@@ -18,7 +66,7 @@
                         <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <!-- CREATE KEEP MODAL -->
             <div class="modal fade" id="createKeep" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
@@ -58,16 +106,15 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <!-- *********** Modal Header *********** -->
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span aria-hidden="true">&times;</span>
-                                <span class="sr-only">Close</span>
-                            </button>
-                            <h4 class="modal-title">
-                                Add Keep
-                            </h4>
-                            <h6>{{activeKeep.name}}</h6>
-                        </div>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title">
+                            Add Keep
+                        </h4>
+                        <h6>{{activeKeep.name}}</h6>
+                        <img :src="activeKeep.imageUrl" alt="" style="height:100px; width:auto;">
                         <!-- *********** Modal Body *********** -->
                         <div class="modal-body">
                             <form class="form">
@@ -89,11 +136,13 @@
                 </div>
             </div>
         </div>
+        <!-- ********** IMAGE MODAL ********** -->
+        <image-modal></image-modal>
     </div>
 </template>
 
 <script>
-
+    import ImageModal from "./imagemodal"
     export default {
         name: 'Keeps',
         data() {
@@ -111,12 +160,19 @@
                     keepId: "",
                     userId: 0
                 },
+                fourCol: true,
             }
         },
         components: {
+            ImageModal
         },
         computed: {
             keeps() {
+                var keeps = this.$store.state.userKeeps
+                if (keeps.length == 4) {
+                    return keeps
+                }
+                this.$store.dispatch('massageKeepData', { data: keeps, num: 4, set: "setUserKeeps" })
                 return this.$store.state.userKeeps
             },
             vaults() {
@@ -140,6 +196,15 @@
                     userId: 0,
                     likes: 0
                 }
+            },
+            openImageModal(keep) {
+                this.$store.dispatch('setActiveKeep', keep)
+                $("#imageModal").modal('show')
+                this.incrementViews(keep)
+            },
+            incrementViews(keep) {
+                keep.views++
+                this.$store.dispatch('updateKeep', keep)
             },
             addKeepToVault(vaultId) {
                 var addKeep = {
@@ -169,25 +234,9 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    h1,
-    h2 {
-        font-weight: normal;
+    .create-keep{
+        color: white;
     }
-
-    ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    li {
-        display: inline-block;
-        margin: 0 10px;
-    }
-
-    a {
-        color: #42b983;
-    }
-
     .keeps {
         padding-top: 2rem;
     }
@@ -225,5 +274,65 @@
         font-size: 30px;
         transform: translate(-50%, -50%);
         text-align: center;
+    }
+
+    /* *********** COLUMN STYLING ********* */
+
+    body {
+        margin: 0;
+        font-family: Arial;
+    }
+
+    .header {
+        text-align: center;
+        padding: 32px;
+    }
+
+    img {
+        border-radius: 10px;
+    }
+
+    .row {
+        display: -ms-flexbox;
+        /* IE 10 */
+        display: flex;
+        -ms-flex-wrap: wrap;
+        /* IE 10 */
+        flex-wrap: wrap;
+        padding: 0 4px;
+    }
+
+    /* Create two equal columns that sits next to each other */
+
+    .column {
+        -ms-flex: 25%;
+        /* IE 10 */
+        flex: 25%;
+        padding: 0 4px;
+    }
+
+    .column img {
+        margin-top: 8px;
+        vertical-align: middle;
+    }
+
+    /* Style the buttons */
+
+    .btn {
+        border: none;
+        outline: none;
+        padding: 10px 16px;
+        background-color: #f1f1f1;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .btn:hover {
+        background-color: #ddd;
+    }
+
+    .btn.active {
+        background-color: #666;
+        color: white;
     }
 </style>
