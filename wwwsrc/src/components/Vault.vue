@@ -46,15 +46,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-sm-4" v-for="keep in activeKeeps">
-                <div class="thumbnail">
-                    <img :src="keep.imageUrl" alt="image" style="width:100%">
-                    <div class="caption">
-                        <p>{{keep.name}}</p>
-                        <i class="fa fa-trash" @click="removeKeepFromVault(keep.id)"></i>
-                    </div>
-                </div>
-            </div> -->
         </div>
     </div>
 </template>
@@ -76,11 +67,13 @@
         components: {},
         computed: {
             keeps() {
-                // var keeps = this.$store.state.activeKeeps
-                // if (keeps.length == 4) {
-                //     return keeps
-                // }
-                // this.$store.dispatch('massageKeepData', { data: keeps, num: 4, set: "setActiveVaultKeeps" })
+                // ********** COMMENT THIS OUT WHEN THE SERVER IS RUNNING **********
+                var keeps = this.$store.state.activeKeeps
+                if (keeps.length == 4) {
+                    return keeps
+                }
+                this.$store.dispatch('massageKeepData', { data: keeps, num: 4, set: "setActiveVaultKeeps" })
+                // ********** END **********
                 return this.$store.state.activeKeeps
             },
         },
@@ -98,31 +91,26 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    .row {
-        margin-top: 5rem
-    }
-
     .keeps {
         padding-top: 2rem;
-        
-    }
-        /* *********** COLUMN STYLING ********* */
 
-        body {
-        margin: 0;
-        font-family: Arial;
     }
-
-    .header {
-        text-align: center;
-        padding: 32px;
+    img:hover {
+        -ms-transform: scale(1.02);
+        /* IE 9 */
+        -webkit-transform: scale(1.02);
+        /* Safari 3-8 */
+        transform: scale(1.02);
     }
 
     img {
         border-radius: 10px;
     }
 
+    /* *********** COLUMN STYLING ********* */
+
     .row {
+        margin-top: 5rem;
         display: -ms-flexbox;
         /* IE 10 */
         display: flex;
@@ -131,9 +119,10 @@
         flex-wrap: wrap;
         padding: 0 4px;
     }
-       /* Create two equal columns that sits next to each other */
 
-       .column {
+    /* Create two equal columns that sits next to each other */
+
+    .column {
         -ms-flex: 25%;
         /* IE 10 */
         flex: 25%;
@@ -143,25 +132,5 @@
     .column img {
         margin-top: 8px;
         vertical-align: middle;
-    }
-
-    /* Style the buttons */
-
-    .btn {
-        border: none;
-        outline: none;
-        padding: 10px 16px;
-        background-color: #f1f1f1;
-        cursor: pointer;
-        font-size: 18px;
-    }
-
-    .btn:hover {
-        background-color: #ddd;
-    }
-
-    .btn.active {
-        background-color: #666;
-        color: white;
     }
 </style>

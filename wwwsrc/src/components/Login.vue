@@ -41,7 +41,6 @@
 </template>
 
 <script>
-  import vue from 'vue'
   export default {
     name: 'Login',
     data() {

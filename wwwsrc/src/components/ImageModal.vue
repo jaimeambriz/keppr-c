@@ -21,7 +21,6 @@
                             <span v-if="user.id">
                                 <i class="fa fa-code-fork" @click="OpenAddKeepToVaultModal"> {{activeKeep.count}}</i>
                             </span>
-
                             <i class="fa fa-share"></i> (coming soon)
                         </div>
                         <div class="hover-buttons overlay">

@@ -3,31 +3,35 @@
         <nav class="navbar navbar-inverse" data-spy="affix">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    <!-- ********** PUSH HOME ********** -->
                     <router-link class="navbar-brand" to="/">
                         <img src="https://preview.ibb.co/jq2bbm/Keepr.png" alt="Keeper" height="50" width="50" style="display: inline-block">
                     </router-link>
                 </div>
                 <ul class="nav navbar-nav">
+                    <!-- ********** PUSH HOME ********** -->
                     <li class="navbar-home">
                         <router-link to="/">
                             <i class="fa fa-home fa-lg"></i> Home
                         </router-link>
                     </li>
                     <li class="navbar-vaults">
+                        <!-- ********** POUSH TO VAULTS ********** -->
                         <router-link to="/vaults">
                             <i class="fa fa-microchip fa-lg"></i> Vaults
                         </router-link>
                     </li>
                     <li class="navbar-keeps">
+                        <!-- ********** PUSH TO KEEPS ********** -->
                         <router-link to="/keeps">
                             <i class="fa fa-thumb-tack fa-lg"></i> Keeps
                         </router-link>
                     </li>
                     <li class="navbar-toggle">
-                            <label class="switch">
-                              <input type="checkbox">
-                              <span class="slider round"></span>
-                            </label>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider round"></span>
+                        </label>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -184,8 +188,10 @@
     .slider.round:before {
         border-radius: 50%;
     }
+
     /* SLIDER BOARDER */
+
     .navbar-inverse .navbar-toggle {
-    border-color: #3330;
-}
+        border-color: #3330;
+    }
 </style>

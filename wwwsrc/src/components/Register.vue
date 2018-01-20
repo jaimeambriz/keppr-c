@@ -59,29 +59,6 @@
       components: {
       },
       methods: {
-        // signIn: function () {
-        //   Vue.googleAuth().directAccess()
-        //   Vue.googleAuth().signIn(this.onSignInSuccess, this.onSignInError)
-        // },
-        // onSignInSuccess: function (authorizationCode) {
-        //   this.toggleLoading()
-        //   this.resetResponse()
-        //   this.$store.dispatch('getGoogleUser', authorizationCode)
-        //   // this.$store.dispatch('getCal', authorizationCode)
-        // },
-        // onSignInError: function (error) {
-        //   this.response = 'Failed to sign-in'
-        //   console.log('GOOGLE SERVER - SIGN-IN ERROR', error)
-        // },
-        // toggleLoading: function () {
-        //   this.loading = (this.loading === '') ? 'loading' : ''
-        // },
-        // resetResponse: function () {
-        //   this.response = ''
-        // },
-        // toggleFormState() {
-        //   this.loginFormActive = !this.loginFormActive
-        // },
         submitLogin() {
           this.$store.dispatch('login', this.login)
           this.login = {

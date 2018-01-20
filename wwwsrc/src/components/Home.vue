@@ -1,15 +1,6 @@
 <template>
   <div class="home">
-    <!-- <div class="header" id="myHeader"> -->
-    <!-- ********** BUTTONS FOR GRID ********** -->
-    <!-- <h1>Image Grid</h1>
-      <p>Click on the buttons to change the grid view.</p>
-      <button class="btn active" @click="two()">2</button>
-      <button class="btn" @click="four()">4</button>
-      <button class="btn" @click="eight()">8</button> -->
-    <!-- </div> -->
     <div class="row">
-
       <!-- ********** BEGIN DRAWING THUMBNAILS ********* -->
       <div class="column">
         <div class="thumbnail keep-content" v-for="keep in keeps[0]">
@@ -55,114 +46,10 @@
           </div>
         </div>
       </div>
-      <!-- <div id="photos"> -->
-      <!-- <div class="column"> -->
-      <!-- <div class="thumbnail" style="width:100%;" v-for="keep in keeps"></div> -->
-      <!-- <div class="image-container " v-for="keep in keeps">
-          <img :src="keep.imageUrl" alt="image" @click="setActiveKeep(keep)" style="width:100%; border:white solid 10px; border-radius: 10%;">
-        </div> -->
-
-
-      <!-- <div class="caption"> -->
-      <!-- <p>{{keep.name}}</p> -->
-      <!-- <i class="fa fa-eye pull-left" @click="incrementViews(keep)">{{keep.views}}</i>
-            <i class="fa fa-code-fork">{{keep.count}}</i>
-            <i class="fa fa-heart pull-right">{{keep.likes}}</i>
-          </div>  -->
-      <!-- </div> -->
-      <!-- </div> -->
-      <!-- <div class="column">
-            <div class="thumbnail" v-for="keep in keeps[1]">
-              <img :src="keep.imageUrl" alt="image" style="width:100%">
-              <div class="caption">
-                <p>{{keep.name}}</p>
-                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-                <i class="fa fa-code-fork">{{keep.count}}</i>
-                <i class="fa fa-heart">{{keep.likes}}</i>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="thumbnail" v-for="keep in keeps[2]">
-              <img :src="keep.imageUrl" alt="image" style="width:100%">
-              <div class="caption">
-                <p>{{keep.name}}</p>
-                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-                <i class="fa fa-code-fork">{{keep.count}}</i>
-                <i class="fa fa-heart">{{keep.likes}}</i>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="thumbnail" v-for="keep in keeps[3]">
-              <img :src="keep.imageUrl" alt="image" style="width:100%">
-              <div class="caption">
-                <p>{{keep.name}}</p>
-                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-                <i class="fa fa-code-fork">{{keep.count}}</i>
-                <i class="fa fa-heart">{{keep.likes}}</i>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="thumbnail" v-for="keep in keeps[4]">
-              <img :src="keep.imageUrl" alt="image" style="width:100%">
-              <div class="caption">
-                <p>{{keep.name}}</p>
-                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-                <i class="fa fa-code-fork">{{keep.count}}</i>
-                <i class="fa fa-heart">{{keep.likes}}</i>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="thumbnail" v-for="keep in keeps[5]">
-              <img :src="keep.imageUrl" alt="image" style="width:100%">
-              <div class="caption">
-                <p>{{keep.name}}</p>
-                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-                <i class="fa fa-code-fork">{{keep.count}}</i>
-                <i class="fa fa-heart">{{keep.likes}}</i>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="thumbnail" v-for="keep in keeps[6]">
-              <img :src="keep.imageUrl" alt="image" style="width:100%">
-              <div class="caption">
-                <p>{{keep.name}}</p>
-                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-                <i class="fa fa-code-fork">{{keep.count}}</i>
-                <i class="fa fa-heart">{{keep.likes}}</i>
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="thumbnail" v-for="keep in keeps[7]">
-              <img :src="keep.imageUrl" alt="image" style="width:100%">
-              <div class="caption">
-                <p>{{keep.name}}</p>
-                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-                <i class="fa fa-code-fork">{{keep.count}}</i>
-                <i class="fa fa-heart">{{keep.likes}}</i>
-              </div>
-            </div>
-          </div> -->
-      <!-- ********** DRAW KEEPS ********** -->
-      <!-- <div class="col-sm-4" v-for="keep in keeps">
-            <div class="thumbnail">
-              <img :src="keep.imageUrl" alt="image" style="width:100%">
-              <div class="caption">
-                <p>{{keep.name}}</p>
-                <i class="fa fa-eye" @click="incrementView(keep)">{{keep.views}}</i>
-                <i class="fa fa-code-fork">{{keep.count}}</i>
-                <i class="fa fa-heart">{{keep.likes}}</i>
-              </div>
-            </div>
-          </div> -->
     </div>
     <login></login>
     <register></register>
+     <!-- ********** IMAGE MODAL ********** -->
     <image-modal></image-modal>
     <!-- *********** ADD KEEP TO VAULT MODAL************ -->
     <div class="modal fade" id="addKeep" tabindex="-1" role="dialog" aria-hidden="true">
@@ -225,11 +112,13 @@
     },
     computed: {
       keeps() {
+        // ********** COMMENT THIS OUT WHEN THE SERVER IS RUNNING **********
         var keeps = this.$store.state.keeps
         if (keeps.length == 4) {
           return keeps
         }
         this.$store.dispatch('massageKeepData', { data: keeps, num: 4, set: "setKeeps" })
+        // ********** END **********
         return this.$store.state.keeps
       },
       vaults() {
@@ -269,64 +158,29 @@
         var keep = this.$store.state.activeKeep
         keep.count++
         this.$store.dispatch("updateKeep", keep)
-
       },
-      eight() {
-        var elements = document.getElementsByClassName("column");
-        for (var i = 0; i < elements.length; i++) {
-          elements[i].style.msFlex = "12.5%";  // IE10
-          elements[i].style.flex = "12.5%";
-        }
-      },
-      two() {
-        var elements = document.getElementsByClassName("column");
-        for (var i = 0; i < elements.length; i++) {
-          elements[i].style.msFlex = "50%";  // IE10
-          elements[i].style.flex = "50%";
-        }
-      },
-      four() {
-        var elements = document.getElementsByClassName("column");
-        for (var i = 0; i < elements.length; i++) {
-          elements[i].style.msFlex = "25%";  // IE10
-          elements[i].style.flex = "25%";
-        }
-      }
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .caption{
+  .caption {
     color: white;
   }
-  .thumbnail{
+
+  .thumbnail {
     background-color: rgba(87, 87, 87, 0.5)
   }
+
   .home {
     padding-top: 4rem;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: Arial;
-  }
-
-  .header {
-    text-align: center;
-    padding: 32px;
   }
 
   .row {
     display: -ms-flexbox;
     display: flex;
     -ms-flex-wrap: wrap;
-
     flex-wrap: wrap;
     padding: 0 4px;
   }
@@ -340,7 +194,7 @@
   }
 
   p {
-    margin: 0 0 1px
+    margin: 0 0 0px
   }
 
   img:hover {
@@ -351,31 +205,11 @@
     transform: scale(1.02);
   }
 
-  body {
-    margin: 0;
-    font-family: Arial;
-  }
-
-  .header {
-    text-align: center;
-    padding: 32px;
-  }
-
   img {
     border-radius: 10px;
   }
 
-  .row {
-    display: -ms-flexbox;
-    /* IE 10 */
-    display: flex;
-    -ms-flex-wrap: wrap;
-    /* IE 10 */
-    flex-wrap: wrap;
-    padding: 0 4px;
-  }
-
-  /* Create two equal columns that sits next to each other */
+  /* Create four equal columns that sits next to each other */
 
   .column {
     -ms-flex: 25%;
@@ -389,115 +223,9 @@
     vertical-align: middle;
   }
 
-  /* Style the buttons */
-
-  .btn {
-    border: none;
-    outline: none;
-    padding: 10px 16px;
-    background-color: #f1f1f1;
-    cursor: pointer;
-    font-size: 18px;
-  }
-
-  .btn:hover {
-    background-color: #ddd;
-  }
-
-  .btn.active {
-    background-color: #666;
-    color: white;
-  }
-
-  .keep-content:hover .overlay {
-    opacity: .7;
-  }
-
-  .overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    background-color: #070000;
-  }
-
-  .hover-buttons {
-    top: 50%;
-    left: 50%;
-    position: absolute;
-    font-size: 30px;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-
-  /* ************** Column Count *********** */
-
-  /* .thumbnail {
-    display: block;
-    padding: 0px;
-    margin-bottom: 20px;
-    line-height: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    -webkit-transition: border .2s ease-in-out;
-    -o-transition: border .2s ease-in-out;
-    transition: border .2s ease-in-out;
-  }
-
-  #photos {
-
-    line-height: 18; */
-
-  /* -webkit-column-count: 5;
-   -webkit-column-gap:   0px;
-   -moz-column-count:    5;
-   -moz-column-gap:      0px; */
-
-  /* column-count: 4;
-    column-gap: 2px;
-  } */
-
-  /* 
-  template {
-    margin: 0;
-    padding: 0;
-  } */
-
-  /* @media (max-width: 1200px) {
-  #photos {
-  -moz-column-count:    4;
-  -webkit-column-count: 4;
-  column-count:         4;
-  }
-} */
-
-  /* @media (max-width: 1000px) {
-    #photos {
-      -moz-column-count: 3;
-      -webkit-column-count: 3;
-      column-count: 3;
-    }
-  }
-
-  @media (max-width: 800px) {
-    #photos {
-      -moz-column-count: 2;
-      -webkit-column-count: 2;
-      column-count: 2;
-    }
-  } */
-
-  /* /* @media (max-width: 400px) {
-    #photos {
-      -moz-column-count: 1;
-      -webkit-column-count: 1;
-      column-count: 1;
-    }
-  } */
+  /* ************** MEDIA WIDTH ***********  
+  @media (max-width: 1000px) { 
+  #photos { 
+  column-count: 3; } 
+  }  */
 </style>

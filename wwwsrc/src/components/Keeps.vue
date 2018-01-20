@@ -51,18 +51,6 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-sm-4" v-for="keep in keeps">
-                <div class="thumbnail">
-                    <img :src="keep.imageUrl" alt="image" style="width:100%">
-                    <div class="caption">
-                        <p>{{keep.name}}</p>
-                        <i class="fa fa-eye">{{keep.views}}</i>
-                        <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-                        <i class="fa fa-heart">{{keep.likes}}</i>
-                        <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
-                    </div>
-                </div>
-            </div> -->
             <!-- CREATE KEEP MODAL -->
             <div class="modal fade" id="createKeep" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
@@ -164,11 +152,13 @@
         },
         computed: {
             keeps() {
-                // var keeps = this.$store.state.userKeeps
-                // if (keeps.length == 4) {
-                //     return keeps
-                // }
-                // this.$store.dispatch('massageKeepData', { data: keeps, num: 4, set: "setUserKeeps" })
+                // ********** COMMENT THIS OUT WHEN THE SERVER IS RUNNING **********
+                var keeps = this.$store.state.userKeeps
+                if (keeps.length == 4) {
+                    return keeps
+                }
+                this.$store.dispatch('massageKeepData', { data: keeps, num: 4, set: "setUserKeeps" })
+                // ********** END **********
                 return this.$store.state.userKeeps
             },
             vaults() {
@@ -230,6 +220,16 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+    /* **********  IMAGE HOVER ********** */
+
+    img:hover {
+        -ms-transform: scale(1.02);
+        /* IE 9 */
+        -webkit-transform: scale(1.02);
+        /* Safari 3-8 */
+        transform: scale(1.02);
+    }
+
     /*********** THUMBNAIL OPACITY ********* */
 
     .caption {

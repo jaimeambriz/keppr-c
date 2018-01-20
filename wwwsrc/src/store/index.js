@@ -31,18 +31,10 @@ var store = new vuex.Store({
             {
                 id: 2,
                 userid: 9,
-                imageUrl: 'https://wallpaperbrowse.com/media/images/750806.jpg',
-                name: 'Tree House?',
+                imageUrl: 'https://vignette.wikia.nocookie.net/poohadventures/images/1/1b/Jimmy_neutron.jpg/revision/latest/scale-to-width-down/220?cb=20160212185406',
+                name: 'Jimmy',
                 views: 7,
                 count: 3,
-            },
-            {
-                id: 3,
-                userid: 10,
-                imageUrl: 'https://wallpaperbrowse.com/media/images/picture-56.jpg',
-                name: 'Tell Me More....',
-                views: 8,
-                count: 4,
             },
             {
                 id: 2,
@@ -60,6 +52,14 @@ var store = new vuex.Store({
                     'https://vignette.wikia.nocookie.net/looneytunesshowfanon/images/a/a4/Homer_Simpson_SWAG.jpg/revision/latest?cb=20130415233646',
                 name: 'The Simpsons',
                 userId: 1,
+            },
+            {
+                id: 3,
+                userid: 10,
+                imageUrl: 'https://images-na.ssl-images-amazon.com/images/I/41s46Ca33CL.jpg',
+                name: 'Johnny Bravo',
+                views: 8,
+                count: 4,
             },
             {
                 id: 2,
@@ -109,15 +109,15 @@ var store = new vuex.Store({
             {
                 id: 2,
                 userid: 9,
-                imageUrl: 'https://wallpaperbrowse.com/media/images/750806.jpg',
-                name: 'Tree House?',
+                imageUrl: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f4/Daffy_Duck.svg/1200px-Daffy_Duck.svg.png',
+                name: 'Daffy Duck',
                 views: 7,
                 count: 3,
             },
             {
                 id: 3,
                 userid: 10,
-                imageUrl: 'https://wallpaperbrowse.com/media/images/picture-56.jpg',
+                imageUrl: 'https://www.thewrap.com/wp-content/uploads/2016/05/garfield-movie.jpg',
                 name: 'Tell Me More....',
                 views: 8,
                 count: 4,
@@ -219,6 +219,13 @@ var store = new vuex.Store({
                 userId: 1,
                 views: 23,
             }, {
+                count: 1,
+                id: 39,
+                imageUrl: "http://images5.fanpop.com/image/photos/30400000/Yoshi-snowboard-yoshi-30430714-455-480.png",
+                name: "Yoshi",
+                userId: 1,
+                views: 2,
+            }, {
                 count: 2,
                 id: 33,
                 imageUrl: "https://www.nationalparks.org/sites/default/files/yosemite-merced.jpg",
@@ -260,13 +267,6 @@ var store = new vuex.Store({
                 name: "Crash",
                 userId: 1,
                 views: 9,
-            }, {
-                count: 1,
-                id: 39,
-                imageUrl: "http://images5.fanpop.com/image/photos/30400000/Yoshi-snowboard-yoshi-30430714-455-480.png",
-                name: "Yoshi",
-                userId: 1,
-                views: 2,
             }, {
                 count: 0,
                 id: 40,
@@ -868,9 +868,7 @@ var store = new vuex.Store({
                     console.log('Error: ', err)
                 })
         },
-        // ********** VaultKeeps **********
-        //addKeepToVault()
-        //removeKeepFromVault()
+
     }
 
 })

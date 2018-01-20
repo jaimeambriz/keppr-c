@@ -1,5 +1,6 @@
 <template>
     <div class="vaults">
+        <!-- CREATE VAULT BUTTON -->
         <div class="create-vault">
             <h4 data-toggle="modal" data-target="#createVault">
                 <i class="fa fa-picture-o fa-lg"></i> Create Vault
@@ -14,8 +15,6 @@
                     </router-link>
                     <div class="caption">
                         <p>{{vault.name}}</p>
-                        <!-- <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
-                        <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i> -->
                         <i class="fa fa-trash" @click="deleteVault(vault.id)"></i>
                     </div>
                 </div>
@@ -27,8 +26,6 @@
                     </router-link>
                     <div class="caption">
                         <p>{{vault.name}}</p>
-                        <!-- <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
-                            <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i> -->
                         <i class="fa fa-trash" @click="deleteVault(vault.id)"></i>
                     </div>
                 </div>
@@ -40,8 +37,6 @@
                     </router-link>
                     <div class="caption">
                         <p>{{vault.name}}</p>
-                        <!-- <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
-                                <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i> -->
                         <i class="fa fa-trash" @click="deleteVault(vault.id)"></i>
                     </div>
                 </div>
@@ -53,26 +48,10 @@
                     </router-link>
                     <div class="caption">
                         <p>{{vault.name}}</p>
-                        <!-- <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
-                                    <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i> -->
                         <i class="fa fa-trash" @click="deleteVault(vault.id)"></i>
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-sm-6" v-for="vault in vaults">
-                <div class="thumbnail">
-                    <router-link :to="'/vaults/'+vault.id">
-                        <img :src="vault.imageUrl" alt="image" style="width:100%">
-                    </router-link>
-                    <div class="caption">
-                        <h1>{{vault.name}}</h1>
-                        <p>{{vault.description}}</p>
-                        <i class="fa fa-trash" @click="deleteVault(vault.id)"></i>
-                    </div>
-                </div>
-            </div> -->
-            <!-- CREATE VAULT BUTTON -->
-
             <!-- MODAL BEGIN -->
             <div class="modal fade" id="createVault" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog">
@@ -131,11 +110,13 @@
         components: {},
         computed: {
             vaults() {
-                //     var vaults = this.$store.state.vaults
-                //     if (vaults.length == 2) {
-                //         return vaults
-                //     }
-                //     this.$store.dispatch('massageKeepData', { data: vaults, num: 2, set: "setVaults" })
+                // ********** COMMENT THIS OUT WHEN THE SERVER IS RUNNING **********
+                var vaults = this.$store.state.vaults
+                if (vaults.length == 2) {
+                    return vaults
+                }
+                this.$store.dispatch('massageKeepData', { data: vaults, num: 2, set: "setVaults" })
+                // ********** END **********
                 return this.$store.state.activeVaults
             },
 
@@ -194,22 +175,12 @@
 
     /* *********** COLUMN STYLING ********* */
 
-    body {
-        margin: 0;
-        font-family: Arial;
-    }
-
     img:hover {
         -ms-transform: scale(1.02);
         /* IE 9 */
         -webkit-transform: scale(1.02);
         /* Safari 3-8 */
         transform: scale(1.02);
-    }
-
-    .header {
-        text-align: center;
-        padding: 32px;
     }
 
     img {
@@ -238,25 +209,5 @@
     .column img {
         margin-top: 8px;
         vertical-align: middle;
-    }
-
-    /* Style the buttons */
-
-    .btn {
-        border: none;
-        outline: none;
-        padding: 10px 16px;
-        background-color: #f1f1f1;
-        cursor: pointer;
-        font-size: 18px;
-    }
-
-    .btn:hover {
-        background-color: #ddd;
-    }
-
-    .btn.active {
-        background-color: #666;
-        color: white;
     }
 </style>
