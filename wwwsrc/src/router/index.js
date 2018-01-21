@@ -40,7 +40,7 @@ const router = new Router({
       path: '/profile',
       name: 'Profile',
       component: Profile,
-      meta: { requiresAuth: true }
+      // meta: { requiresAuth: true }
 
     },
     {

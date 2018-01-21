@@ -16,19 +16,12 @@
                 <div class="modal-body">
                     <div class="thumbnail keep-content">
                         <img :src="activeKeep.imageUrl" alt="image" class="image" style="height:500px; width:auto">
-                        <div class="caption">
-                            <i class="fa fa-eye"> {{activeKeep.views}}</i>
-                            <span v-if="user.id">
-                                <i class="fa fa-code-fork" @click="OpenAddKeepToVaultModal"> {{activeKeep.count}}</i>
-                            </span>
-                            <i class="fa fa-share"></i> (coming soon)
-                        </div>
-                        <div class="hover-buttons overlay">
-                            <i class="fa fa-eye"> {{activeKeep.views}}</i>
-                            <span v-if="user.id">
-                                <i class="fa fa-code-fork" @click="OpenAddKeepToVaultModal"> {{activeKeep.count}}</i>
-                            </span>
-                            <i class="fa fa-share"></i> (coming soon)
+                        <div class="overlay">
+                            <div class="hover-buttons">
+                                <i class="fa fa-eye"> {{activeKeep.views}}</i>
+                                    <i class="fa fa-code-fork" @click="OpenAddKeepToVaultModal"> {{activeKeep.count}}</i>
+                                <i class="fa fa-share"></i> (coming soon)
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,6 +64,7 @@
     }
 </script>
 <style scoped>
+   
     .thumbnail {
         max-height: 600Px;
         position: relative;
@@ -96,15 +90,17 @@
         width: 100%;
         opacity: 0;
         transition: .5s ease;
-        background-color: #070000;
+        background-color: #000000;
     }
 
     .hover-buttons {
-        top: 50%;
+        top:5%;
         left: 50%;
         position: absolute;
-        font-size: 30px;
+        font-size: 20px;
         transform: translate(-50%, -50%);
         text-align: center;
+        color:rgb(255, 255, 255);
+        cursor: pointer;
     }
 </style>

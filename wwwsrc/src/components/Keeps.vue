@@ -8,46 +8,54 @@
         <div class="row">
             <!-- ********** DRAW KEEPS ********** -->
             <div class="column">
-                <div class="thumbnail" v-for="keep in keeps[0]">
-                    <img :src="keep.imageUrl" alt="image" style="width:100%">
+                <div class="thumbnail" data-scroll-reveal="enter left and move 50px over 1.33s" v-for="keep in keeps[0]">
+                    <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
                     <div class="caption">
                         <p>{{keep.name}}</p>
-                        <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
-                        <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-                        <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
+                        <div class="buttons">
+                            <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                            <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+                            <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="column">
                 <div class="thumbnail" v-for="keep in keeps[1]">
-                    <img :src="keep.imageUrl" alt="image" style="width:100%">
+                    <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
                     <div class="caption">
                         <p>{{keep.name}}</p>
-                        <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
-                        <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-                        <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
+                        <div class="buttons">
+                            <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                            <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+                            <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
+                        </div>
                     </div>
                 </div>
             </div>
             <div v-if="keeps.length > 2" class="column">
                 <div class="thumbnail" v-for="keep in keeps[2]">
-                    <img :src="keep.imageUrl" alt="image" style="width:100%">
+                    <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
                     <div class="caption">
                         <p>{{keep.name}}</p>
-                        <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
-                        <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-                        <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
+                        <div class="buttons">
+                            <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                            <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+                            <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
+                        </div>
                     </div>
                 </div>
             </div>
             <div v-if="keeps.length > 2" class="column">
                 <div class="thumbnail" v-for="keep in keeps[3]">
-                    <img :src="keep.imageUrl" alt="image" style="width:100%">
+                    <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
                     <div class="caption">
                         <p>{{keep.name}}</p>
-                        <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
-                        <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-                        <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
+                        <div class="buttons">
+                            <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                            <i class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+                            <i class="fa fa-trash" @click="deleteKeep(keep.id)"></i>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -222,6 +230,7 @@
 <style scoped>
     /* **********  IMAGE HOVER ********** */
 
+    .buttons:hover,
     img:hover {
         -ms-transform: scale(1.02);
         /* IE 9 */
@@ -259,7 +268,27 @@
         flex-wrap: wrap
     }
 
-    .keep-content:hover .overlay {
+    .buttons {
+        background-color: rgba(0, 0, 0, 0.507);
+        color: white;
+        font-size: 16px;
+        padding: 16px 32px;
+        border-radius: 10px;
+    }
+
+    .fa-code-fork {
+        margin-right: 15px;
+        margin-left: 15px;
+    }
+
+    img,
+    .fa-code-fork,
+    .fa-trash,
+    .fa-eye {
+        cursor: pointer;
+    }
+
+    /* .keep-content:hover .overlay {
         opacity: .5;
     }
 
@@ -283,7 +312,7 @@
         font-size: 30px;
         transform: translate(-50%, -50%);
         text-align: center;
-    }
+    } */
 
     /* *********** COLUMN STYLING ********* */
 

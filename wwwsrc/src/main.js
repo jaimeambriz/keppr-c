@@ -5,7 +5,9 @@ import App from './App'
 import router from './router'
 import axios from 'axios'
 import store from './store'
+import VueScrollReveal from 'vue-scroll-reveal';
 
+Vue.use(VueScrollReveal);
 // var server = axios.create({
 //   baseURL: window.location.host.includes("localhost") ? '//localhost:5000/' : '/',
 //   timeout: 2000, 

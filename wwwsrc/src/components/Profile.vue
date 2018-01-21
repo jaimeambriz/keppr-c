@@ -1,6 +1,17 @@
 <template>
-  <div class="Profile ">
+  <div class="Profile">
     <h1>Profile</h1>
+    <template>
+        <main>
+          <section>
+            <h1>Scroll down!</h1>
+          </section>
+       
+          <section v-scroll-reveal.reset>
+            <h1>Tada!</h1>
+          </section>
+        </main>
+      </template>
   </div>
 </template>
 
@@ -36,5 +47,8 @@
 
   a {
     color: #42b983;
+  }
+  section {
+    height: 100vh;
   }
 </style>

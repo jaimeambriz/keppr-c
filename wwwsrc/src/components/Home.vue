@@ -1,55 +1,80 @@
 <template>
-  <div class="home">
+  <div class="home" id="container">
     <div class="row">
       <!-- ********** BEGIN DRAWING THUMBNAILS ********* -->
       <div class="column">
-        <div class="thumbnail keep-content" v-for="keep in keeps[0]">
-          <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
-          <div class="caption">
-            <p>{{keep.name}}</p>
-            <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
-            <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-            <i class="fa fa-share"></i> (coming soon)
+        <div class="thumbnail animated zoomInDown" v-for="keep in keeps[0]">
+          <div v-scroll-reveal="{origin: 'bottom', distance: '300px',duration: 200, delay: 900}" class="scroll-reveal">
+            <img :src="keep.imageUrl" alt="image"  @click="openImageModal(keep)" style="width:100%">
+            <div class="caption">
+              <p>{{keep.name}}</p>
+              <div class="buttons">
+                <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+                <i class="fa fa-share"></i> (coming soon)
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div class="column">
-        <div class="thumbnail keep-content" v-for="keep in keeps[1]">
-          <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
-          <div class="caption">
-            <p>{{keep.name}}</p>
-            <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
-            <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-            <i class="fa fa-share"></i> (coming soon)
+        <div class="thumbnail animated zoomInDown" v-for="keep in keeps[1]">
+          <div v-scroll-reveal="{origin: 'bottom',  distance: '300px',duration: 200, delay: 500}" class="scroll-reveal">
+            <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
+            <div class="caption">
+              <p>{{keep.name}}</p>
+              <div class="buttons">
+                <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+                <i class="fa fa-share"></i> (coming soon)
+              </div>
+            </div>
+          </div>
+          <!-- ********* HOVER BUTTONS ********** -->
+          <!-- <div class="hover-buttons">
+            <div class="buttons">
+              <p>{{keep.name}}</p>
+              <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+              <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+              <i class="fa fa-share"></i> (coming soon)
+            </div>
+          </div> -->
+        </div>
+      </div>
+      <div v-if="keeps.length > 2" class="column">
+        <div class="thumbnail animated zoomInDown" v-for="keep in keeps[2]">
+          <div v-scroll-reveal="{origin: 'bottom',  distance: '300px',duration: 200, delay: 800}"class="scroll-reveal">
+            <img :src="keep.imageUrl" alt="image"  @click="openImageModal(keep)" style="width:100%">
+            <div class="caption">
+              <p>{{keep.name}}</p>
+              <div class="buttons">
+                <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+                <i class="fa fa-share"></i> (coming soon)
+              </div>
+            </div>
           </div>
         </div>
       </div>
       <div v-if="keeps.length > 2" class="column">
-        <div class="thumbnail keep-content" v-for="keep in keeps[2]">
-          <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
-          <div class="caption">
-            <p>{{keep.name}}</p>
-            <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
-            <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-            <i class="fa fa-share"></i> (coming soon)
-          </div>
-        </div>
-      </div>
-      <div v-if="keeps.length > 2" class="column">
-        <div class="thumbnail keep-content" v-for="keep in keeps[3]">
-          <img :src="keep.imageUrl" alt="image" @click="openImageModal(keep)" style="width:100%">
-          <div class="caption">
-            <p>{{keep.name}}</p>
-            <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
-            <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
-            <i class="fa fa-share"></i> (coming soon)
+        <div class="thumbnail animated zoomInDown" v-for="keep in keeps[3]">
+          <div v-scroll-reveal="{origin: 'bottom',  distance: '300px',duration: 200, delay: 600}" class="scroll-reveal">
+            <img :src="keep.imageUrl" alt="image"  @click="openImageModal(keep)" style="width:100%">
+            <div class="caption">
+              <p>{{keep.name}}</p>
+              <div class="buttons">
+                <i class="fa fa-eye" @click="openImageModal(keep)">{{keep.views}}</i>
+                <i v-if="user.id" class="fa fa-code-fork" @click="setActiveKeep(keep)">{{keep.count}}</i>
+                <i class="fa fa-share"></i> (coming soon)
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <login></login>
     <register></register>
-     <!-- ********** IMAGE MODAL ********** -->
+    <!-- ********** IMAGE MODAL ********** -->
     <image-modal></image-modal>
     <!-- *********** ADD KEEP TO VAULT MODAL************ -->
     <div class="modal fade" id="addKeep" tabindex="-1" role="dialog" aria-hidden="true">
@@ -89,6 +114,16 @@
 </template>
 
 <script>
+  // import ScrollReveal from 'scrollreveal'
+  // window.sr = ScrollReveal();
+  // sr.flag   = true;
+  // if ( sr && sr.flag ) {
+  //   var container = document.getElementById('container');
+  //   sr.reveal( '.tile', { container: container } );
+  //   sr.flag = false;
+  // } else {
+  //   sr.sync();
+  // }
   import ImageModal from './imagemodal'
   import Register from './Register'
   import Login from './Login'
@@ -169,9 +204,48 @@
     color: white;
   }
 
+  /*********** HOVER ***********/
+
   .thumbnail {
-    background-color: rgba(87, 87, 87, 0.5)
+    background-color: rgba(87, 87, 87, 0.5);
+    position: relative
   }
+
+  /* .image {
+    opacity: 1;
+    transition: .5s ease;
+    display: inline-block;
+    width: 100%;
+  } */
+
+  /* .hover-buttons {
+    transition: .5s ease;
+    opacity: 0;
+    position: absolute;
+    top: 2%;
+    left: 0%;
+    width: 100%;
+    transform: translate(0%, 0%);
+    text-align: center;
+  } */
+
+  /* .thumbnail:hover .image {
+    opacity: .3;
+  } */
+
+  /* .thumbnail:hover .hover-buttons {
+    opacity: 1;
+  } */
+
+  .buttons {
+    background-color: rgba(0, 0, 0, 0.507);
+    color: white;
+    font-size: 16px;
+    padding: 16px 32px;
+    border-radius: 10px;
+  }
+
+  /* *********** END HOVER ********** */
 
   .home {
     padding-top: 4rem;
@@ -197,6 +271,7 @@
     margin: 0 0 0px
   }
 
+  .buttons:hover,
   img:hover {
     -ms-transform: scale(1.02);
     /* IE 9 */
@@ -207,6 +282,13 @@
 
   img {
     border-radius: 10px;
+  }
+
+  img,
+  .fa-code-fork,
+  .fa-share,
+  .fa-eye {
+    cursor: pointer;
   }
 
   /* Create four equal columns that sits next to each other */
